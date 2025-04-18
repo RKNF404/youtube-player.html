@@ -21,7 +21,7 @@
   </head>
   <body>
     <form id=video>
-      <input type=text id=playerid placeholder="Youtube Video/Playlist URL" required />
+      <input type=text id=playerUrl placeholder="Youtube Video/Playlist URL" />
       <button type=button onclick="loadPlayer()">Play</button>
       <button type=button onclick="showPlayer()">Show Player</button>
       <button type=button onclick="hidePlayer()">Hide Player</button>
@@ -50,7 +50,7 @@
       }
 
       function hidePlayer() {
-          const playerFrame = document.getElementById('playerFrame');
+          const playerFrame = document.getElementById("playerFrame");
           if (!playerFrame) {
               console.log("ERROR in hidePlayer(): no playerFrame id found");
               return;
@@ -60,7 +60,7 @@
       }
 
       function showPlayer() {
-          const playerFrame = document.getElementById('playerFrame');
+          const playerFrame = document.getElementById("playerFrame");
           if (!playerFrame) {
               console.log("ERROR in showPlayer(): no playerFrame id found");
               return;
@@ -71,18 +71,19 @@
 
       function loadPlayer() {
           unloadPlayer();
+          var playerUrl = document.getElementById("playerUrl").value;
           var url = "https://www.youtube.com/embed";
           var params = "&iv_load_policy=3&autoplay=0&rel=0"
-          var playerid = youtube_video_parser(document.getElementById("playerid").value);
+          var playerid = youtube_video_parser(playerUrl);
           if (!playerid) {
               url += "?list=";
-              playerid = youtube_playlist_parser(document.getElementById("playerid").value);
+              playerid = youtube_playlist_parser(playerUrl);
               if (!playerid) {
                   console.log("ERROR in loadPlayer(): could not locate video/playlist id in url");
                   return;
               }
           } else {
-              var playlistid = youtube_playlist_parser(document.getElementById("playerid").value.replace(playerid, ""));
+              var playlistid = youtube_playlist_parser(playerUrl.replace(playerid, ""));
               if (playlistid) {
                   params += "&list=" + playlistid;
               }
@@ -102,7 +103,7 @@
           frame.height = 0;
           document.body.appendChild(frame);
 
-          const playerFrame = document.getElementById('playerFrame');
+          const playerFrame = document.getElementById("playerFrame");
           playerFrame.removeAttribute("width");
           playerFrame.removeAttribute("height");
           playerWidth = playerFrame.contentWindow.document.body.scrollWidth * 4;
@@ -111,10 +112,17 @@
       }
 
       function unloadPlayer() {
-          const playerFrame = document.getElementById('playerFrame');
+          const playerFrame = document.getElementById("playerFrame");
           if (playerFrame) {
               playerFrame.remove();
           }
+      }
+      
+      const urlParam = new URLSearchParams(window.location.search).get("url");
+      if (urlParam) {
+        console.log("NOTE: Received url from query parameter");
+        document.getElementById("playerUrl").value = urlParam;
+        loadPlayer();
       }
     </script>
   </body>
