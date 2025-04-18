@@ -1,3 +1,6 @@
+var playerWidth = 0;
+var playerHeight = 0;
+
 function youtube_video_parser(url){
     var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
@@ -16,7 +19,19 @@ function youtube_playlist_parser(url) {
     return false;
 }
 
-function loadVideo() {
+function hidePlayer() {
+    const playerFrame = document.getElementById('playerFrame');
+    playerFrame.width = 0;
+    playerFrame.height = 0;
+}
+
+function showPlayer() {
+    const playerFrame = document.getElementById('playerFrame');
+    playerFrame.width = playerWidth;
+    playerFrame.height = playerHeight;
+}
+
+function loadPlayer() {
     if (document.getElementById("playerFrame")) {
         unloadVideo();
     }
@@ -54,11 +69,12 @@ function loadVideo() {
     const playerFrame = document.getElementById('playerFrame');
     playerFrame.removeAttribute("width");
     playerFrame.removeAttribute("height");
-    playerFrame.width = playerFrame.contentWindow.document.body.scrollWidth * 4;
-    playerFrame.height = playerFrame.contentWindow.document.body.scrollHeight * 4;
+    playerWidth = playerFrame.contentWindow.document.body.scrollWidth * 4;
+    playerHeight = playerFrame.contentWindow.document.body.scrollHeight * 4;
+    showPlayer();
 }
 
-function unloadVideo() {
+function unloadPlayer() {
     const playerFrame = document.getElementById('playerFrame');
     playerFrame.remove();
 }
