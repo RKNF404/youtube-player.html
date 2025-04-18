@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta http-equiv=Content-Security-Policy content="default-src 'none'; script-src-elem 'self'; script-src-attr 'self' 'unsafe-inline'; style-src-elem 'self'; style-src-attr 'self' 'unsafe-inline'; frame-src https://www.youtube.com; form-action 'none'; base-uri 'none'; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests;">
+    <meta name=referrer content=no-referrer>
+    <meta charset=utf-8>
+    <link rel="stylesheet" href="./player.css">
+    <title>player-v1</title>
+  </head>
+  <body>
+    <script type=text/javascript src=./player.js></script>
+    <form id=video>
+      <input type=text id=playerid placeholder="Video/playlist URL" required />
+      <button type=button onclick="loadVideo()">Play</button>
+      <button type=button onclick="unloadVideo()">Unload Video</button>
+    </form>
+  </body>
+</html>
