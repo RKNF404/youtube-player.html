@@ -21,20 +21,26 @@ function youtube_playlist_parser(url) {
 
 function hidePlayer() {
     const playerFrame = document.getElementById('playerFrame');
+    if (!playerFrame) {
+        console.log("ERROR in hidePlayer(): no playerFrame id found");
+        return;
+    }
     playerFrame.width = 0;
     playerFrame.height = 0;
 }
 
 function showPlayer() {
     const playerFrame = document.getElementById('playerFrame');
+    if (!playerFrame) {
+        console.log("ERROR in showPlayer(): no playerFrame id found");
+        return;
+    }
     playerFrame.width = playerWidth;
     playerFrame.height = playerHeight;
 }
 
 function loadPlayer() {
-    if (document.getElementById("playerFrame")) {
-        unloadVideo();
-    }
+    unloadPlayer();
     var url = "https://www.youtube.com/embed";
     var params = "&iv_load_policy=3&autoplay=0&rel=0"
     var playerid = youtube_video_parser(document.getElementById("playerid").value);
@@ -42,7 +48,7 @@ function loadPlayer() {
         url += "?list=";
         playerid = youtube_playlist_parser(document.getElementById("playerid").value);
         if (!playerid) {
-            console.log("ERROR: could not locate video/playlist id in url");
+            console.log("ERROR in loadPlayer(): could not locate video/playlist id in url");
             return;
         }
     } else {
@@ -76,5 +82,7 @@ function loadPlayer() {
 
 function unloadPlayer() {
     const playerFrame = document.getElementById('playerFrame');
-    playerFrame.remove();
+    if (playerFrame) {
+        playerFrame.remove();
+    }
 }
