@@ -1,6 +1,7 @@
 # youtube-player.html
 
 To quickly summarize what this is, it's essentially a super minimal youtube client. You get a Youtube link, paste it in the box, press play and enjoy.
+\
 My web dev skill are kinda jank so expect the visuals to be... yeah.
 
 ## Features
