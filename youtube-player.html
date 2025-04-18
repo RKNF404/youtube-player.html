@@ -11,8 +11,8 @@
         height: 99%;
       }
       iframe {
-        padding: 100px;
         border: none;
+        padding: 3%;
         max-width: 60%;
         max-height: 70%;
       }
@@ -28,6 +28,7 @@
       <button type=button onclick="unloadPlayer()">Stop Playback</button>
     </form>
     <script type=text/javascript>
+      const urlParams = new URLSearchParams(window.location.search);
       var playerWidth = 0;
       var playerHeight = 0;
 
@@ -73,7 +74,12 @@
           unloadPlayer();
           var playerUrl = document.getElementById("playerUrl").value;
           var url = "https://www.youtube.com/embed";
-          var params = "&iv_load_policy=3&autoplay=0&rel=0"
+          var params = "&iv_load_policy=3&rel=0&autoplay="
+          if (urlParams.get("autoplay")) {
+            params += urlParams.get("autoplay");
+          } else {
+            params += "0";
+          }
           var playerid = youtube_video_parser(playerUrl);
           if (!playerid) {
               url += "?list=";
@@ -118,7 +124,7 @@
           }
       }
       
-      const urlParam = new URLSearchParams(window.location.search).get("url");
+      const urlParam = urlParams.get("url");
       if (urlParam) {
         console.log("NOTE: Received url from query parameter");
         document.getElementById("playerUrl").value = urlParam;
