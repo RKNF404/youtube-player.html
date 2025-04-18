@@ -10,9 +10,11 @@
   <body>
     <script type=text/javascript src=./player.js></script>
     <form id=video>
-      <input type=text id=playerid placeholder="Video/playlist URL" required />
-      <button type=button onclick="loadVideo()">Play</button>
-      <button type=button onclick="unloadVideo()">Unload Video</button>
+      <input type=text id=playerid placeholder="Youtube Video/Playlist URL" required />
+      <button type=button onclick="loadPlayer()">Play</button>
+      <button type=button onclick="showPlayer()">Show Player</button>
+      <button type=button onclick="hidePlayer()">Hide Player</button>
+      <button type=button onclick="unloadPlayer()">Stop Playback</button>
     </form>
   </body>
 </html>
