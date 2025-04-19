@@ -17,5 +17,5 @@ My web dev skills are kinda jank so expect the visuals to be... yeah.
 
 ## Why
 - Electron sucks major... popcicles (Freetube uses it, and it's the only client that actually works, so I wanted to change that a little)
-- I want to practice some web dev stuff (don't even say thing, I don't want to hear it)
+- I want to practice some web dev stuff (don't even say anything, I don't want to hear it)
 - Bored ¯\\\_(ツ)\_/¯
