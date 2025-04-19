@@ -16,6 +16,12 @@
         max-width: 60%;
         max-height: 70%;
       }
+      div {
+        padding: 3%;
+        margin-left: auto;
+        margin-right: 0;
+        float: right;
+      }
     </style>
     <title>player-v1</title>
   </head>
@@ -80,9 +86,6 @@
         } else {
           params += "0";
         }
-        if (urlParams.get("loop") === "1") {
-          params += "&loop=1"
-        }
         var playerid = youtube_video_parser(playerUrl);
         if (!playerid) {
           url += "?list=";
@@ -95,10 +98,6 @@
           var playlistid = youtube_playlist_parser(playerUrl.replace(playerid, ""));
           if (playlistid) {
             params += "&list=" + playlistid;
-          }
-          if (urlParams.get("loop") === "1") {
-            params += "&playlist=" + playerid;
-            playerid = "";
           }
         }
         url += "/" + playerid + "?" + params;
