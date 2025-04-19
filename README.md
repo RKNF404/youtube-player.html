@@ -16,4 +16,6 @@ My web dev skills are kinda jank so expect the visuals to be... yeah.
 - Not all videos work (mostly music videos or other content with copyright protections put in place, it's the most basic form of anti-piracy Youtube has despite it literally only impeding me and maybe one other schmuck in the middle of Nevada or something)
 
 ## Why
-- Electron sucks major... popcicles (Freetube uses it, and it's the only client that actually works)
+- Electron sucks major... popcicles (Freetube uses it, and it's the only client that actually works, so I wanted to change that a little)
+- I want to practice some web dev stuff (don't even say thing, I don't want to hear it)
+- Bored ¯\_(ツ)_/¯
