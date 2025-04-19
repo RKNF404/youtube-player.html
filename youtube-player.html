@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang=en>
   <head>
-    <meta http-equiv=Content-Security-Policy content="default-src 'none'; script-src-elem 'self' 'unsafe-inline'; script-src-attr 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; frame-src https://www.youtube.com; form-action 'none'; base-uri 'none'; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests;">
+    <meta http-equiv=Content-Security-Policy content="default-src 'none'; script-src-elem 'self' 'unsafe-inline'; script-src-attr 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; frame-src https://www.youtube-nocookie.com; form-action 'none'; base-uri 'none'; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests;">
     <meta name=referrer content=no-referrer>
     <meta charset=utf-8>
     <style>
@@ -33,8 +33,8 @@
       var playerHeight = 0;
 
       function youtube_video_parser(url){
-        var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        var match = url.match(regExp);
+        const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
         if (match && match[2].length == 11) {
           return match[2];
         }
@@ -42,8 +42,8 @@
       }
 
       function youtube_playlist_parser(url) {
-        var regExp = /^.*(v\/|u\/\w\/|\?list=|\&list=)([^#\&\?]*).*/;
-        var match = url.match(regExp);
+        const regExp = /^.*(v\/|u\/\w\/|\?list=|\&list=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
         if (match && match[2].length == 34) {
           return match[2];
         }
@@ -73,7 +73,7 @@
       function loadPlayer() {
         unloadPlayer();
         var playerUrl = document.getElementById("playerUrl").value;
-        var url = "https://www.youtube.com/embed";
+        var url = "https://www.youtube-nocookie.com/embed";
         var params = "&iv_load_policy=3&rel=0&autoplay="
         if (urlParams.get("autoplay")) {
           params += urlParams.get("autoplay");
@@ -88,11 +88,8 @@
           url += "?list=";
           playerid = youtube_playlist_parser(playerUrl);
           if (!playerid) {
-            // Add support for `playlist=` input to allow custom playlists
-            if (!playerid) {
-              console.log("ERROR in loadPlayer(): could not locate video/playlist id in url");
-              return;
-            }
+            console.log("ERROR in loadPlayer(): could not locate video/playlist id in url");
+            return;
           }
         } else {
           var playlistid = youtube_playlist_parser(playerUrl.replace(playerid, ""));
@@ -101,9 +98,12 @@
           }
           if (urlParams.get("loop") === "1") {
             params += "&playlist=" + playerid;
+            url += "/";
+            playerid = "?";
+          } else {
+            url += "/";
+            playerid += "?";
           }
-          url += "/";
-          playerid += "?";
         }
         url += playerid + params;
 
