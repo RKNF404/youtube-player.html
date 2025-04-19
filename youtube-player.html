@@ -98,14 +98,10 @@
           }
           if (urlParams.get("loop") === "1") {
             params += "&playlist=" + playerid;
-            url += "/";
-            playerid = "?";
-          } else {
-            url += "/";
-            playerid += "?";
+            playerid = "";
           }
         }
-        url += playerid + params;
+        url += "/" + playerid + "?" + params;
 
         const frame = document.createElement("iframe");
         frame.id = "playerFrame";
