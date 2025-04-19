@@ -10,6 +10,7 @@ My web dev skills are kinda jank so expect the visuals to be... yeah.
 - Future Proof (unlike most Youtube clients, this works exactly how Youtube intends it to, so as long as Youtube allows arbitrary embedders this will work)
 - Cross Platform (it's literally HTML and JS, what do you expect? It even works on mobile if you wish... idk why you would do that to yourself though...)
 - Automation (some query parameters are added  for convenience, them being `url=` which will automatically load the player the passed URL as the value, and `autoplay=` which will enable autoplay when `1` is passed)
+- Portable and Maintainable (it is one file with some super simple JavaScript)
 
 ## Limitations
 - This is at most a video & playlist player for Youtube (can't do much else)
