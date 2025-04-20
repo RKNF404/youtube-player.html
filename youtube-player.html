@@ -75,8 +75,8 @@
         var playerUrl = document.getElementById("playerUrl").value;
         var url = "https://www.youtube-nocookie.com/embed";
         var params = "&iv_load_policy=3&rel=0&autoplay="
-        if (urlParams.get("autoplay")) {
-          params += urlParams.get("autoplay");
+        if (urlParams.get("autoplay") === "1" || urlParams.get("autohide") === "1") {
+          params += "1";
         } else {
           params += "0";
         }
@@ -112,7 +112,11 @@
         playerFrame.removeAttribute("height");
         playerWidth = playerFrame.contentWindow.document.body.scrollWidth * 4;
         playerHeight = playerFrame.contentWindow.document.body.scrollHeight * 4;
-        showPlayer();
+        if (urlParams.get("autohide") === "1") {
+          hidePlayer();
+        } else {
+          showPlayer();
+        }
       }
 
       function unloadPlayer() {
