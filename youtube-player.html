@@ -100,13 +100,14 @@
         frame.id = "playerFrame";
         frame.credentialless = true;
         frame.allowFullscreen = true;
+        frame.allow = "autoplay; encrypted-media; picture-in-picture;"
         frame.sandbox = "allow-same-origin allow-scripts allow-presentation allow-popups";
         frame.csp = "require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests;";
+        frame.referrerpolicy = "strict-origin";
         frame.src = url;
         frame.width = 0;
         frame.height = 0;
         document.body.appendChild(frame);
-
         const playerFrame = document.getElementById("playerFrame");
         playerFrame.removeAttribute("width");
         playerFrame.removeAttribute("height");
