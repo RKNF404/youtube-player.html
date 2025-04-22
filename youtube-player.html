@@ -29,8 +29,8 @@
     </form>
     <script type=text/javascript>
       const urlParams = new URLSearchParams(window.location.search);
-      var playerWidth = 0;
-      var playerHeight = 0;
+      let playerWidth = 0;
+      let playerHeight = 0;
 
       function youtube_video_parser(url){
         const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -72,15 +72,15 @@
 
       function loadPlayer() {
         unloadPlayer();
-        var playerUrl = document.getElementById("playerUrl").value;
-        var url = "https://www.youtube-nocookie.com/embed";
-        var params = "&iv_load_policy=3&rel=0&autoplay="
+        let playerUrl = document.getElementById("playerUrl").value;
+        let url = "https://www.youtube-nocookie.com/embed";
+        let params = "&iv_load_policy=3&rel=0&autoplay="
         if (urlParams.get("autoplay") === "1" || urlParams.get("autohide") === "1") {
           params += "1";
         } else {
           params += "0";
         }
-        var playerid = youtube_video_parser(playerUrl);
+        let playerid = youtube_video_parser(playerUrl);
         if (!playerid) {
           url += "?list=";
           playerid = youtube_playlist_parser(playerUrl);
@@ -89,7 +89,7 @@
             return;
           }
         } else {
-          var playlistid = youtube_playlist_parser(playerUrl.replace(playerid, ""));
+          let playlistid = youtube_playlist_parser(playerUrl.replace(playerid, ""));
           if (playlistid) {
             params += "&list=" + playlistid;
           }
