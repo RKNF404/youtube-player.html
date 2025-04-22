@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
   <head>
-    <meta http-equiv=Content-Security-Policy content="default-src 'none'; script-src-elem 'self' 'unsafe-inline'; script-src-attr 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; frame-src https://www.youtube-nocookie.com; form-action 'none'; base-uri 'none'; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests;">
-    <meta name=referrer content=no-referrer>
-    <meta charset=utf-8>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src-elem 'self' 'unsafe-inline'; script-src-attr 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline'; style-src-attr 'self' 'unsafe-inline'; img-src https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; form-action 'none'; base-uri https://www.youtube-nocookie.com; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests;" />
+    <meta name="referrer" content="no-referrer" />
+    <meta charset="utf-8" />
     <style>
       body, html {
         background-color: #3c3c3c;
@@ -20,14 +20,14 @@
     <title>youtube-player</title>
   </head>
   <body>
-    <form id=video>
-      <input type=text id=playerUrl placeholder="Youtube Video/Playlist URL" />
-      <button type=button onclick="loadPlayer()">Play</button>
-      <button type=button onclick="showPlayer()">Show Player</button>
-      <button type=button onclick="hidePlayer()">Hide Player</button>
-      <button type=button onclick="unloadPlayer()">Stop Playback</button>
+    <form id="video">
+      <input type="text" id="playerUrl" placeholder="Youtube Video/Playlist URL" />
+      <button type="button" onclick="loadPlayer()">Play</button>
+      <button type="button" onclick="showPlayer()">Show Player</button>
+      <button type="button" onclick="hidePlayer()">Hide Player</button>
+      <button type="button" onclick="unloadPlayer()">Stop Playback</button>
     </form>
-    <script type=text/javascript>
+    <script type="text/javascript">
       const urlParams = new URLSearchParams(window.location.search);
       let playerWidth = 0;
       let playerHeight = 0;
@@ -99,11 +99,10 @@
         const frame = document.createElement("iframe");
         frame.id = "playerFrame";
         frame.credentialless = true;
-        frame.allowFullscreen = true;
-        frame.allow = "autoplay; encrypted-media; picture-in-picture;"
+        frame.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture;"
         frame.sandbox = "allow-same-origin allow-scripts allow-presentation allow-popups";
         frame.csp = "require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests;";
-        frame.referrerpolicy = "strict-origin";
+        frame.referrerPolicy = "strict-origin";
         frame.src = url;
         frame.width = 0;
         frame.height = 0;
