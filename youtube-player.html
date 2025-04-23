@@ -7,13 +7,12 @@
     <style>
       body, html {
         background-color: #3c3c3c;
-        width: 99%;
-        height: 99%;
+        overflow: hidden;
       }
       iframe {
         border: none;
-        padding: 3%;
-        max-width: 60%;
+        padding: 2%;
+        max-width: 50%;
         max-height: 70%;
       }
     </style>
@@ -44,7 +43,7 @@
       function youtube_playlist_parser(url) {
         const regExp = /^.*(v\/|u\/\w\/|\?list=|\&list=)([^#\&\?]*).*/;
         const match = url.match(regExp);
-        if (match && match[2].length == 34) {
+        if (match && (match[2].length == 34 || match[2].length == 41)) {
           return match[2];
         }
         return false;
@@ -93,8 +92,9 @@
           if (playlistid) {
             params += "&list=" + playlistid;
           }
+          url += "/";
         }
-        url += "/" + playerid + "?" + params;
+        url += playerid + "?" + params;
 
         const frame = document.createElement("iframe");
         frame.id = "playerFrame";
